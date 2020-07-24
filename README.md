@@ -23,15 +23,15 @@ $ echo 67*12000000000+12000025600-815999510600|bc
 
 The inconsistent transaction fee bug has already fixed by the [Qitmeer-0.9.1-hotfix-release][v0.9.1-hotfix]. The Qitmeer [PR-#338][PR_338] contains the bug fix code. 
 
-Since the Block [13567][bk_00005b], the STXO cache works in a incorrect status. That's the reason why you need to clean up your local database and redo the block synchronization. You not only need to upgrade your node to the latest version [0.9.1-hotfix-release][v0.9.1-hotfix] but also need to clean up your local UTXO/STXO status database.
+Since the Block [13567][bk_00005b], the STXO cache works in a incorrect status. That's the reason why you need to clean up your local database and redo the block synchronization. You need to upgrade your node to the latest version [0.9.1-hotfix-release][v0.9.1-hotfix] and clean up your local UTXO/STXO status database.
 
-You have to clean up your local database and redo the block synchronization from the scratch by using following before your start your node.
+You have to clean up your local database and redo the block synchronization from scratch by using the following command before starting your node.
 ```
-# first make sure you are using the correct version.
+# first, make sure you are using the correct version.
 ./qitmeer --version
 qitmeer version 0.9.1+hotfix-release-6e0a73a (Go version go1.14.4)
 
-# then clean up your local database before your start your node.
+# then clean up your local database before you start your node.
 ./qitmeer --testnet --cleanup
 ```
 
