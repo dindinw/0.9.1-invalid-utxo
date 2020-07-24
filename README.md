@@ -8,6 +8,8 @@ When we debug a [strange `qitmeer-walet` problem](https://github.com/Qitmeer/qit
 The first incorrect trasaction fee in 0.9.0 network is block [`00005bb24703377e61113d414258d26af307f85dccf425f85a14ea3c14e58fea`][bk_00005b] (block order `13567`)  
 Transaction fee **`515000`** has been calculated incorrectly as [**`540600`**][wrong_bk_00005b]. 
 
+The reason is the UTXO in the tx [`4067bb146ebc36a6cc244a267c59245c398132c0511a8ccaed90086d764ae6ab`][tx_4067bb] in the block [`f666bcfab2fe32400bd537ea05d5b9855ea13eb3c4fd11b3e786896e1eb3bcdd`][bK_f666bc] (Order 9739) is **12000025600** , but it has been caculated incorrectly as **12000051200** due to a bug in transaction fee caculation.
+
 The wrong transaction fee : 
 ```
 $ echo 67*12000000000+12000051200-815999510600|bc
@@ -18,9 +20,6 @@ The correct transaction fee :
 $ echo 67*12000000000+12000025600-815999510600|bc
 515000
 ```
-
-The reason is the UTXO in the tx [`4067bb146ebc36a6cc244a267c59245c398132c0511a8ccaed90086d764ae6ab`][tx_4067bb] in the block [`f666bcfab2fe32400bd537ea05d5b9855ea13eb3c4fd11b3e786896e1eb3bcdd`][bK_f666bc] (Order 9739) is **12000025600** , but it has been caculated incorrectly as **12000051200** due to a bug in transaction fee caculation.
-
 
 The inconsistent transaction fee bug has already fixed by the [Qitmeer-0.9.1-hotfix-release][v0.9.1-hotfix]. The Qitmeer [PR-#338][PR_338] contains the bug fix code. 
 
